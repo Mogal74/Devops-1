@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX with async/await</title>
+  <script>
+    function loadData() {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'http://localhost:3000/users', true);
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const users = JSON.parse(xhr.responseText);
+          const listContainer = document.getElementById('userList');
+
+          users.forEach(function (user) {
+            const listItem = document.createElement('li');
+            listItem.textContent = user.username;
+            listContainer.appendChild(listItem);
+          });
+        }
+      };
+
+      xhr.send();
+    }
+  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+
+        <h3>AJAX Application To Load the Data From Server using async and await</h3>
+        
+        <div>
+        
+        <input type="button" class="btn btn-info" onclick="loadData()" value="Load Data"/>
+        
+        </div>
+        
+        <br/><br/>
+        
+        <div>
+        
+        <ol id="demo"></ol>
+        </div>
+        </div>
+
+</body>
+</html>
